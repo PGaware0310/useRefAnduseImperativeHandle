@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -13,28 +13,28 @@ const Login = (props) => {
   const[collegeIsValid,setCollegeIsValid]=useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(()=>{
+    setFormIsValid(
+      enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length>4
+    );
+  },[enteredEmail,enteredPassword,enteredCollege]);
+ 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6 && enteredCollege.trim().length>4
-    );
+    
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@')&& enteredCollege.trim().length>4
-    );
+    
   };
 
   const enterCollegeHandler=(event)=>{
     setEnteredCollege(event.target.value);
 
-    setFormIsValid(
-      event.target.value.trim().length>4
-    );
+    
   }
 
   const validateEmailHandler = () => {
