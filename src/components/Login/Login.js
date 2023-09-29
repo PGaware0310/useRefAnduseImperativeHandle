@@ -21,7 +21,7 @@ const passwordReducer=(state,action)=>{
   if(action.type==='USER_PASSWORD'){
     return{value:action.val,isValid:action.val.trim().length>6}
   }
-  if(action.type==='PASSWORD_BLUR'){
+  if(action.type==='PASS_BLUR'){
     return {value:state.value,isValid:state.value.trim().length>6}
   }
 return {value:'',isValid:false}
@@ -94,7 +94,7 @@ dispatchPassword({type:'USER_PASSWORD',val:event.target.value})
   };
 
   const validatePasswordHandler = () => {
-    dispatchPassword({type:'PASSWORD_BLUR'});
+    dispatchPassword({type:'PASS_BLUR'});
   };
 
   const validateCollegeHandler=()=>{
